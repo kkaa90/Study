@@ -37,6 +37,12 @@ class Worker(id : String, pwd : String, name : String, email : String) {
     @Column(name = "update")
     private var update : Date? = null
 
+    @Column(name = "provider")
+    private val provider : String = "none"
+
+    @Column(name = "providerId")
+    private val providerId : String = "none"
+
     fun getNo() = no
 
     fun getId() = id

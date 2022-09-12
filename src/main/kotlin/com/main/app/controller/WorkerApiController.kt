@@ -3,6 +3,7 @@ package com.main.app.controller
 import com.main.app.model.CreateWorkerRequestModel
 import com.main.app.model.LoginRequestModel
 import com.main.app.model.SimpleWorkerModel
+import com.main.app.service.WorkerOauthService
 import com.main.app.service.WorkerService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
@@ -22,6 +23,9 @@ import org.springframework.web.bind.annotation.RestController
 class WorkerApiController {
     @Autowired
     private lateinit var workerService: WorkerService
+
+    @Autowired
+    private lateinit var workerOauthService: WorkerOauthService
 
     @PostMapping("/create")
     fun create(@RequestBody req: CreateWorkerRequestModel): ResponseEntity<Void> {
@@ -71,7 +75,7 @@ class WorkerApiController {
         }
     }
 
-    @PutMapping("/deActivate-user/{no}")
+    @PutMapping("/deactivate-user/{no}")
     fun deActiveUser(@PathVariable("no") no : Long) : ResponseEntity<Void>{
         val isUpdateComplete = workerService.deActivateWorker(no)
         return if(isUpdateComplete){
